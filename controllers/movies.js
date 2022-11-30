@@ -4,12 +4,14 @@ const Movie = require('../models/movie');
 const { ForbiddenError } = require('../utils/errors/ForbiddenError');
 const { IncorrectDataError } = require('../utils/errors/IncorrectDataError');
 const { NotFoundError } = require('../utils/errors/NotFoundError');
+const { ConflictError } = require('../utils/errors/ConflictError');
 
 const {
   MESSAGE_NO_MOVIE_ID,
   MESSAGE_INCORRECT_MOVIE_DATA,
   MESSAGE_TRY_MOVIE_DEL,
   MESSAGE_INCORRECT_MOVIE_ID,
+  MESSAGE_CONFLICT_MOVIE_ID,
 } = require('../utils/constans');
 
 module.exports.getMovies = (req, res, next) => {
@@ -21,7 +23,7 @@ module.exports.getMovies = (req, res, next) => {
 module.exports.postMovies = (req, res, next) => {
   const {
     country, director, duration, year, description,
-    image, trailer, nameRU, nameEN, thumbnail, movieId,
+    image, trailerLink, nameRU, nameEN, thumbnail, movieId,
   } = req.body;
   const owner = req.user._id;
 
@@ -32,7 +34,7 @@ module.exports.postMovies = (req, res, next) => {
     year,
     description,
     image,
-    trailer,
+    trailerLink,
     nameRU,
     nameEN,
     thumbnail,
@@ -43,9 +45,11 @@ module.exports.postMovies = (req, res, next) => {
     .catch((err) => {
       if (err instanceof mongoose.Error.ValidationError) {
         next(new IncorrectDataError(MESSAGE_INCORRECT_MOVIE_DATA));
-      } else {
-        next(err);
       }
+      if (err.code === 11000) {
+        return next(new ConflictError(MESSAGE_CONFLICT_MOVIE_ID));
+      }
+      return next(err);
     });
 };
 

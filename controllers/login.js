@@ -17,13 +17,11 @@ const {
 const { JWT_SECRET = DEV_JWT_SECRET, JWT_EXPIRESIN = DEV_JWT_EXPIRESIN } = process.env;
 
 module.exports.createUser = (req, res, next) => {
-  const {
-    name, about, avatar, email, password,
-  } = req.body;
+  const { name, email, password } = req.body;
 
   bcrypt.hash(password, 10)
     .then((hash) => User.create({
-      name, about, avatar, email, password: hash,
+      name, email, password: hash,
     }))
     .then((user) => {
       const userObj = user.toObject();
