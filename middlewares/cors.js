@@ -1,6 +1,6 @@
 const allowedCors = [
-  // 'https://mesto.voitekhovich.nomoredomains.icu',
-  // 'http://mesto.voitekhovich.nomoredomains.icu',
+  'https://movies.voitekhovich.nomoredomains.club',
+  'http://movies.voitekhovich.nomoredomains.club',
   'http://localhost:3001',
 ];
 
