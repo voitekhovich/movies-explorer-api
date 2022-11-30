@@ -3,9 +3,16 @@ const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const User = require('../models/user');
 const { ConflictError } = require('../utils/errors/ConflictError');
-
-const { DEV_JWT_SECRET, DEV_JWT_EXPIRESIN } = require('../utils/constans');
 const { IncorrectDataError } = require('../utils/errors/IncorrectDataError');
+
+const {
+  DEV_JWT_SECRET,
+  DEV_JWT_EXPIRESIN,
+  MESSAGE_INCORRECT_USER_DATA,
+  MESSAGE_CONFLICT_EMAIL,
+  MESSAGE_USER_AUTHORIZED,
+  MESSAGE_EXIT,
+} = require('../utils/constans');
 
 const { JWT_SECRET = DEV_JWT_SECRET, JWT_EXPIRESIN = DEV_JWT_EXPIRESIN } = process.env;
 
@@ -25,10 +32,10 @@ module.exports.createUser = (req, res, next) => {
     })
     .catch((err) => {
       if (err instanceof mongoose.Error.ValidationError) {
-        return next(new IncorrectDataError('Переданы некорректные данные при создании пользователя'));
+        return next(new IncorrectDataError(MESSAGE_INCORRECT_USER_DATA));
       }
       if (err.code === 11000) {
-        return next(new ConflictError('Такой e-mail уже существует'));
+        return next(new ConflictError(MESSAGE_CONFLICT_EMAIL));
       }
       return next(err);
     });
@@ -49,11 +56,11 @@ module.exports.login = (req, res, next) => {
           httpOnly: true,
           sameSite: true,
         })
-        .send({ message: 'Пользователь авторизован' });
+        .send({ message: MESSAGE_USER_AUTHORIZED });
     })
     .catch(next);
 };
 
 module.exports.signout = (req, res) => {
-  res.clearCookie('jwt').send({ message: 'Выход' });
+  res.clearCookie('jwt').send({ message: MESSAGE_EXIT });
 };

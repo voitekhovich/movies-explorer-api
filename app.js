@@ -11,9 +11,11 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { cors } = require('./middlewares/cors');
 const { limiter } = require('./utils/rateLimiter');
 
+const { DEV_PORT, DEV_MONGO_DB_URL, dateOptions } = require('./utils/constans');
+
 const {
-  PORT = 3000,
-  MONGO_DB_URL = 'mongodb://localhost:27017/moviesdb',
+  PORT = DEV_PORT,
+  MONGO_DB_URL = DEV_MONGO_DB_URL,
 } = process.env;
 
 const app = express();
@@ -36,16 +38,6 @@ app.use(errorLogger);
 
 app.use(errors());
 app.use(errs);
-
-const dateOptions = {
-  year: 'numeric',
-  month: 'numeric',
-  day: 'numeric',
-  timezone: 'Europe/Moscow',
-  hour: 'numeric',
-  minute: 'numeric',
-  second: 'numeric',
-};
 
 app.listen(PORT, () => {
   console.log(`${(new Date().toLocaleString('ru', dateOptions))}: App listening on port ${PORT}`);
