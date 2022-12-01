@@ -7,7 +7,9 @@ const { NotFoundError } = require('../utils/errors/NotFoundError');
 const {
   MESSAGE_NO_USER_ID,
   MESSAGE_INCORRECT_USER_DATA,
+  MESSAGE_CONFLICT_EMAIL,
 } = require('../utils/constans');
+const { ConflictError } = require('../utils/errors/ConflictError');
 
 module.exports.getUsersMe = (req, res, next) => {
   User.findById(req.user._id)
@@ -25,8 +27,10 @@ module.exports.patchUsersMe = (req, res, next) => {
     .catch((err) => {
       if (err instanceof mongoose.Error.ValidationError) {
         next(new IncorrectDataError(MESSAGE_INCORRECT_USER_DATA));
-      } else {
-        next(err);
       }
+      if (err.code === 11000) {
+        return next(new ConflictError(MESSAGE_CONFLICT_EMAIL));
+      }
+      return next(err);
     });
 };

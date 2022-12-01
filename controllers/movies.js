@@ -63,14 +63,7 @@ module.exports.delMoviesById = (req, res, next) => {
 
       return Movie.findByIdAndRemove(req.params.movieId)
         .orFail(new NotFoundError(MESSAGE_NO_MOVIE_ID))
-        .then((deletedMovie) => res.send(deletedMovie))
-        .catch((err) => {
-          if (err instanceof mongoose.Error.CastError) {
-            next(new IncorrectDataError(MESSAGE_INCORRECT_MOVIE_ID));
-          } else {
-            next(err);
-          }
-        });
+        .then((deletedMovie) => res.send(deletedMovie));
     })
     .catch((err) => {
       if (err instanceof mongoose.Error.CastError) {

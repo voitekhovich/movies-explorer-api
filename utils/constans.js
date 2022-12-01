@@ -32,3 +32,5 @@ module.exports.MESSAGE_BAD_PASSWORD = 'Неправильный email или п�
 
 module.exports.MESSAGE_404 = 'Был запрошен несуществующий роут';
 module.exports.MESSAGE_SERVER_ERR = 'На сервере произошла ошибка';
+
+module.exports.MESSAGE_INCORRECT_URL = 'Некорректно указана ссылка';

@@ -7,10 +7,10 @@ const { MESSAGE_404 } = require('../utils/constans');
 
 const auth = require('../middlewares/auth');
 const { NotFoundError } = require('../utils/errors/NotFoundError');
-const { loginSсhema } = require('../utils/joiSchemas');
+const { signUpSсhema, signInSсhema } = require('../utils/joiSchemas');
 
-router.post('/signup', celebrate(loginSсhema), createUser);
-router.post('/signin', celebrate(loginSсhema), login);
+router.post('/signup', celebrate(signUpSсhema), createUser);
+router.post('/signin', celebrate(signInSсhema), login);
 
 router.use(cookieParser());
 router.use(auth);
