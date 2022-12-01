@@ -26,7 +26,7 @@ module.exports.patchUsersMe = (req, res, next) => {
     .then((user) => res.send(user))
     .catch((err) => {
       if (err instanceof mongoose.Error.ValidationError) {
-        next(new IncorrectDataError(MESSAGE_INCORRECT_USER_DATA));
+        return next(new IncorrectDataError(MESSAGE_INCORRECT_USER_DATA));
       }
       if (err.code === 11000) {
         return next(new ConflictError(MESSAGE_CONFLICT_EMAIL));
