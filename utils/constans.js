@@ -3,7 +3,6 @@ module.exports.DEV_MONGO_DB_URL = 'mongodb://localhost:27017/moviesdb';
 module.exports.DEV_JWT_SECRET = 'dev-secret';
 module.exports.DEV_JWT_EXPIRESIN = '7d';
 
-module.exports.regex = /^https?:\/\/(www.)?[\w\-._~:/?#[\]@!$&'()*+,;=]*\.[\w]*(\/[\w\-._~:/?#[\]@!$&'()*+,;=]*)?/i;
 module.exports.dateOptions = {
   year: 'numeric',
   month: 'numeric',
