@@ -1,4 +1,4 @@
-module.exports.DEV_PORT = 3000;
+module.exports.DEV_PORT = 3001;
 module.exports.DEV_MONGO_DB_URL = 'mongodb://localhost:27017/moviesdb';
 module.exports.DEV_JWT_SECRET = 'dev-secret';
 module.exports.DEV_JWT_EXPIRESIN = '7d';

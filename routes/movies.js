@@ -8,6 +8,6 @@ const { movieSсhema, movieIdSсhema } = require('../utils/joiSchemas');
 
 router.get('/', getMovies);
 router.post('/', celebrate(movieSсhema), postMovies);
-router.delete('/:movieId', celebrate(movieIdSсhema), delMoviesById);
+router.delete('/:_id', celebrate(movieIdSсhema), delMoviesById);
 
 module.exports = router;

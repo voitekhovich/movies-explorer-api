@@ -2,6 +2,7 @@ const allowedCors = [
   'https://movies.voitekhovich.nomoredomains.club',
   'http://movies.voitekhovich.nomoredomains.club',
   'http://localhost:3001',
+  'http://localhost:3000',
 ];
 
 module.exports.cors = (req, res, next) => {
