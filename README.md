@@ -46,7 +46,7 @@ https://movies.voitekhovich.nomoredomains.club/
 * Node.js - 16.18.0
 * MongoDB - 4.4.x
 
-**Backend:**
+**[Backend:](https://github.com/voitekhovich/movies-explorer-api)**
 ```
 git clone https://github.com/voitekhovich/movies-explorer-api.git
 cd movies-explorer-api/
@@ -54,7 +54,7 @@ npm i
 npm run start
 ```
 
-**Frontend:**
+**[Frontend:](https://github.com/voitekhovich/movies-explorer-frontend)**
 ```
 git clone https://github.com/voitekhovich/movies-explorer-frontend.git
 cd movies-explorer-frontend/
@@ -71,7 +71,7 @@ npm run start
 * PM2
 * Nginx
 
-**Backend:**
+**[Backend:](https://github.com/voitekhovich/movies-explorer-api)**
 ```
 git clone https://github.com/voitekhovich/movies-explorer-api.git
 
@@ -83,7 +83,7 @@ cd ~/movies-explorer-api
 npm i
 pm2 start movies
 ```
-**Frontend:**
+**[Frontend:](https://github.com/voitekhovich/movies-explorer-frontend)**
 ```
 git clone https://github.com/voitekhovich/movies-explorer-frontend.git
 
