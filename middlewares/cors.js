@@ -1,6 +1,5 @@
 const allowedCors = [
-  'https://movies.voitekhovich.nomoredomains.club',
-  'http://movies.voitekhovich.nomoredomains.club',
+  'https://movies.avcode.ru/',
   'http://localhost:3001',
 ];
 
